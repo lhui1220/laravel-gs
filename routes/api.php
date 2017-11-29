@@ -17,6 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/heroes', 'HeroController@getHeroes');
+Route::post('/heroes', 'HeroController@createHero');
+Route::put('/heroes/{}', 'HeroController@updateHero');
+Route::delete('/heros/{id}', 'HeroController@deleteHero');
+
 Route::get('/pay', 'PayController@pay');
 
 Route::get('/refund', 'PayController@refund');

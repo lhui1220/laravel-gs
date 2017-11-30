@@ -18,8 +18,9 @@ class Auth
         $token = $request->header('token');
 
         if (!$token || $token != '123456') {
-            return response('Unauthorized',401);
+            return response()->json(['code'=>401,'message'=>'invalid token'],401);
         }
+
         return $next($request);
     }
 }

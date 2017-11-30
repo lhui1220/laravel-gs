@@ -11,25 +11,19 @@ namespace App\Services;
 class HeroService
 {
     public function getHeroes() {
-//        return DB::table('heroes')->get();
-        echo "get heroes";
+        return \DB::table('heroes')->get();
     }
 
-    public function updateHero(array $hero) {
-        if (!array_key_exists('id',$hero)) {
-            return 0;
-        }
-        $id = $hero['id'];
-        unset($hero['id']);
-        return DB::table('heroes')->where('id','=',$id)->update($hero);
+    public function updateHero($id, array $hero) {
+        return \DB::table('heroes')->where('id','=',$id)->update($hero);
     }
 
     public function saveHero(array $hero) {
-        return DB::table('heroes')->insertGetId($hero);
+        return \DB::table('heroes')->insertGetId($hero);
     }
 
     public function deleteHero($id) {
-        return DB::table('heroes')->where('id','=',$id)->delete();
+        return \DB::table('heroes')->where('id','=',$id)->delete();
     }
 
 }

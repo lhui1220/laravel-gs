@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/heroes', 'HeroController@getHeroes');
 Route::post('/heroes', 'HeroController@createHero');
-Route::put('/heroes/{}', 'HeroController@updateHero');
+Route::put('/heroes/{id}', 'HeroController@updateHero');
 Route::delete('/heros/{id}', 'HeroController@deleteHero');
 
 Route::get('/pay', 'PayController@pay');

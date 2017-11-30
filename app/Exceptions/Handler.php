@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -36,7 +38,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+        Log::error($exception->getMessage(),
+            array_merge($this->context(), ['exception' => $exception]));
+        //parent::report($exception);
     }
 
     /**
@@ -48,6 +52,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json(['code'=>405,'message'=>'Method not allowed'],405);
+        } elseif ($exception instanceof \PDOException) {
+            return response()->json(['code'=>500,'message'=>'Internal server error.'],500);
+        }
         return parent::render($request, $exception);
     }
 }

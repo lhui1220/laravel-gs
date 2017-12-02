@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -56,6 +57,8 @@ class Handler extends ExceptionHandler
             return response()->json(['code'=>405,'message'=>'Method not allowed'],405);
         } elseif ($exception instanceof \PDOException) {
             return response()->json(['code'=>500,'message'=>'Internal server error.'],500);
+        } elseif ($exception instanceof ModelNotFoundException) {
+            return response()->json(['code'=>404,'message'=>$exception->getMessage()],404);
         }
         return parent::render($request, $exception);
     }

@@ -29,26 +29,17 @@ class InterviewController extends Controller
      * 正则提取a标签的href属性值与其文本内容,并保存到关联数组
      */
     public function regex() {
-        //====匹配html====
+
         $html = '<a href="www.baidu.com">百度</a>';
-//        $html .= '<a href="www.ali.com">阿里</a>';
-//        $html .= '<a href="www.tencent.com">腾讯</a>';
-        //====匹配html====
+        $html .= '<a href="www.ali.com">阿里</a>';
+        $html .= '<a href="www.tencent.com">腾讯</a>';
 
-//        $pattern = '/<a href="\w+">.+?<\/a>/';
-//        $pattern = '/.+/';//all
-        //====匹配电话号码====
-//        $html = '010-12345678';
-//        $html = '0101-1234567';
-//        $pattern = '/^0\d{2}-\d{8}$|^0\d{3}-\d{7}$/'; //分支
-        //====匹配电话号码====
-
-        $pattern = '/^(\d{1,3}\.){3}\d{1,3}$/'; //匹配ip
-        $html = '127.11.22.1';
-        $result = array();
-        if (preg_match($pattern, $html, $matches)) {
-//            $result[$matches[1]] = $matches[2];
-            print_r($matches);
+        $pattern = '/<a href="(.+)">(.+)<\/a>/U';
+        $result = [];
+        if (preg_match_all($pattern, $html, $matches, PREG_SET_ORDER)) {
+            foreach ($matches as $match) {
+                $result[$match[1]] = $match[2];
+            }
         }
         return response()->json($result);
     }

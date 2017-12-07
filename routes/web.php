@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->view('welcome')->header('Cache-Control','no-cache');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

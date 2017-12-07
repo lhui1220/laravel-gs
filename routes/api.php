@@ -22,6 +22,13 @@ Route::post('/heroes', 'HeroController@createHero');
 Route::put('/heroes/{id}', 'HeroController@updateHero');
 Route::delete('/heros/{id}', 'HeroController@deleteHero');
 
+Route::post('/file', 'StorageController@saveFile');
+Route::get('/file', 'StorageController@getFile');
+Route::post('/dirs', 'StorageController@mkdir');
+Route::delete('/dirs', 'StorageController@delDir');
+Route::get('/files', 'StorageController@getFiles');
+Route::get('/files/all', 'StorageController@getAllFiles');
+
 Route::get('/pay', 'PayController@pay');
 
 Route::get('/refund', 'PayController@refund');

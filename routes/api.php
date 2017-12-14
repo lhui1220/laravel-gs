@@ -24,15 +24,18 @@ Route::delete('/heros/{id}', 'HeroController@deleteHero');
 
 Route::post('/file', 'StorageController@saveFile');
 Route::get('/file', 'StorageController@getFile');
+Route::delete('/file', 'StorageController@delFile');
 Route::post('/dirs', 'StorageController@mkdir');
 Route::delete('/dirs', 'StorageController@delDir');
 Route::get('/files', 'StorageController@getFiles');
 Route::get('/files/all', 'StorageController@getAllFiles');
 
+Route::get('/reflection/class', 'ReflectionControllerTest@testReflectionClass');
+Route::get('/reflection/properties', 'ReflectionControllerTest@testReflectionProperty');
+
+Route::post('/jobs', 'JobController@pub');
+
 Route::get('/pay', 'PayController@pay');
-
 Route::get('/refund', 'PayController@refund');
-
 Route::get('/callback', 'PayController@callback');
-
 Route::get('/notify', 'PayController@notify');

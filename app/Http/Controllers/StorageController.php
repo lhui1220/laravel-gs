@@ -13,7 +13,11 @@ class StorageController extends Controller
         $default_path = Storage::put('default_file.txt','Hello,World!'); //use default disk
         $local_path = Storage::disk('local')->put('local_file.txt','Hello,World!'); //use local disk
         $public_path = Storage::disk('public')->put('public_file.txt','Hello,World!'); //use public disk
-        return response()->json(['default'=>$default_path,'local'=>$local_path,'public'=>$public_path]);
+        $oss_path = Storage::disk('ali-oss')->put('oss_file.txt','Hello,World!'); //use ali-oss disk
+        return response()->json(['default'=>$default_path,
+            'local'=>$local_path,
+            'public'=>$public_path,
+            'oss'=>$oss_path]);
     }
 
     public function getFile() {
@@ -21,8 +25,17 @@ class StorageController extends Controller
         $default_content = Storage::get('default_file.txt'); //use default disk
         $local_content = Storage::disk('local')->get('local_file.txt'); //use local disk
         $public_content = Storage::disk('public')->get('public_file.txt'); //use public disk
+        $oss_content = Storage::disk('ali-oss')->get('oss_file.txt'); //use ali-oss disk
 
-        return response()->json(['default'=>$default_content,'local'=>$local_content,'public'=>$public_content]);
+        return response()->json(['default'=>$default_content,
+            'local'=>$local_content,
+            'public'=>$public_content,
+            'oss'=>$oss_content]);
+    }
+
+    public function delFile() {
+        $res = Storage::disk('ali-oss')->delete('oss_file.txt');
+        return response()->json(['ret'=>$res]);
     }
 
     public function mkdir() {

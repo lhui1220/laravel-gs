@@ -33,6 +33,8 @@ Route::get('/files/all', 'StorageController@getAllFiles');
 Route::get('/reflection/class', 'ReflectionControllerTest@testReflectionClass');
 Route::get('/reflection/properties', 'ReflectionControllerTest@testReflectionProperty');
 
+Route::post('/events','EventController@fireOrderShipEvent');
+
 Route::post('/jobs', 'JobController@pub');
 
 Route::get('/pay', 'PayController@pay');

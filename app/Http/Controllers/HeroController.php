@@ -14,9 +14,18 @@ class HeroController extends Controller
         $this->heroService = $heroService;
     }
 
-    public function getHeroes() {
+    public function getHeroes(Request $req) {
         $heroes = $this->heroService->getHeroes();
-        return response()->json($heroes);
+        $etag_input = $req->header('If-None-Match');
+        $etag = md5(json_encode($heroes));
+        if ($etag_input == $etag) {
+            return response('',304)->header('Cache-Control','no-store');
+        } else {
+            return response()->json($heroes)
+                ->header('ETag',$etag)
+                ->header('Cache-Control','no-store');
+        }
+
     }
 
     public function updateHero(Request $req, $id) {

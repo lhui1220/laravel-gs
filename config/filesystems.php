@@ -63,6 +63,14 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'ali-oss' => [
+            'driver' => 'ali-oss',
+            'accesskey_id' => '0p8o5WnrBJDL9GXN',
+            'accesskey_secret' => 'Znq1bRm6mFLQUUmh5oLADFUx51sxud',
+            'endpoint' => 'oss-cn-hangzhou.aliyuncs.com',
+            'bucket' => 'jiudaifu-sandbox'
+        ],
+
     ],
 
 ];

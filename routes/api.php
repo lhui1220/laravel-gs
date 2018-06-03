@@ -22,6 +22,7 @@ Route::post('/heroes', 'HeroController@createHero');
 Route::put('/heroes/{id}', 'HeroController@updateHero');
 Route::delete('/heros/{id}', 'HeroController@deleteHero');
 
+
 Route::post('/users', 'UserController@create');
 Route::get('/users/{id}', 'UserController@get');
 Route::get('/users/{user_id}/articles', 'ArticleController@articles');
@@ -37,6 +38,21 @@ Route::get('/tags/{id}/articles', 'TagController@articles');
 Route::get('/interview/ucfirst', 'InterviewController@ucfirst');
 Route::get('/interview/regex', 'InterviewController@regex');
 Route::get('/interview/dblock', 'InterviewController@dblock');
+
+Route::post('/file', 'StorageController@saveFile');
+Route::get('/file', 'StorageController@getFile');
+Route::delete('/file', 'StorageController@delFile');
+Route::post('/dirs', 'StorageController@mkdir');
+Route::delete('/dirs', 'StorageController@delDir');
+Route::get('/files', 'StorageController@getFiles');
+Route::get('/files/all', 'StorageController@getAllFiles');
+
+Route::get('/reflection/class', 'ReflectionControllerTest@testReflectionClass');
+Route::get('/reflection/properties', 'ReflectionControllerTest@testReflectionProperty');
+
+Route::post('/events','EventController@fireOrderShipEvent');
+
+Route::post('/jobs', 'JobController@pub');
 
 Route::get('/pay', 'PayController@pay');
 Route::get('/refund', 'PayController@refund');

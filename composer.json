@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "aliyuncs/oss-sdk-php": "^2.2",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "~3.3",
         "geekio/laravel-rabbitmq": "dev-master",

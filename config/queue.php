@@ -64,6 +64,16 @@ return [
             'retry_after' => 90,
         ],
 
+        'rabbit' => [
+            'driver' => 'rabbit',
+            'host' => 'www.geek.io',
+            'port' => 5672,
+            'vhost' => '/',
+            'user'  => 'rabbit',
+            'password' => 'rabbit',
+            'queue' => 'rock'
+        ]
+
     ],
 
     /*

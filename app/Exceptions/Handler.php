@@ -39,9 +39,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        Log::error($exception->getMessage(),
-            array_merge($this->context(), ['exception' => $exception]));
-        //parent::report($exception);
+        $context = [];
+        if ($exception instanceof ServiceException) {
+            $context = $exception->getContext();
+        }
+        Log::error($exception,$context);
     }
 
     /**

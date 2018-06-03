@@ -14,8 +14,9 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/interview/ucfirst',['X-Token'=>'token-xxxx']);
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+                    ->assertHeader('X-token','token-xxx');
     }
 }

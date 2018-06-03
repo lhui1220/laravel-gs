@@ -36,9 +36,13 @@ Route::get('/tags/{id}/articles', 'TagController@articles');
 
 Route::get('/interview/ucfirst', 'InterviewController@ucfirst');
 Route::get('/interview/regex', 'InterviewController@regex');
-
+Route::get('/interview/dblock', 'InterviewController@dblock');
 
 Route::get('/pay', 'PayController@pay');
 Route::get('/refund', 'PayController@refund');
 Route::get('/callback', 'PayController@callback');
 Route::get('/notify', 'PayController@notify');
+
+Route::get('/cors/simple', 'CorsController@simple');
+Route::post('/cors/preflighted', 'CorsController@preflighted');
+

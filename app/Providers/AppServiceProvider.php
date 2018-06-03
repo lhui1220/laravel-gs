@@ -16,9 +16,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //监听SQL语句的执行
-        DB::listen(function ($query) {
-            Log::debug(json_encode($query));
-        });
+//        DB::listen(function ($query) {
+//            Log::debug(json_encode($query));
+//        });
     }
 
     /**

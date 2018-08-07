@@ -39,6 +39,10 @@ Route::get('/interview/ucfirst', 'InterviewController@ucfirst');
 Route::get('/interview/regex', 'InterviewController@regex');
 Route::get('/interview/dblock', 'InterviewController@dblock');
 
+Route::get('/interview/bulk_insert/orm', 'InterviewController@multInsertUseORM');
+Route::get('/interview/bulk_insert/pdo', 'InterviewController@multInsertUsePdo');
+Route::get('/interview/bulk_insert/pdo_nobind', 'InterviewController@multInsertUsePdoNoBind');
+
 Route::post('/file', 'StorageController@saveFile');
 Route::get('/file', 'StorageController@getFile');
 Route::delete('/file', 'StorageController@delFile');
@@ -61,4 +65,8 @@ Route::get('/notify', 'PayController@notify');
 
 Route::get('/cors/simple', 'CorsController@simple');
 Route::post('/cors/preflighted', 'CorsController@preflighted');
+
+Route::get('/pdf', 'PdfController@export');
+
+Route::get('/pdf', 'PdfController@export');
 
